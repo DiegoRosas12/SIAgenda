@@ -251,7 +251,6 @@ class Controller:
     def read_a_appointment(self):
         self.view.ask('ID Cita: ')
         id_appointment = input()
-        #order
         appointment = self.model.read_a_appointment(id_appointment)
         if type(appointment) == tuple:
             appointment_details = self.model.read_appointment_details(id_appointment)
@@ -396,7 +395,7 @@ class Controller:
 
     """
     *********************************
-    * Controllers for order details *
+    * Controllers for appointment details *
     *********************************
     """                                 
     def create_appointment_details(self, id_appointment):
@@ -429,7 +428,6 @@ class Controller:
         appointment = self.read_a_appointment()
         if type(appointment) == tuple:
             id_appointment = appointment[0]
-            #o_total = order[4]
             id_contact = ' '
             while id_contact != '':
                 self.view.msg('---- Agrega contactos a la cita (deja vacio el id del producto para salir) ---')
@@ -443,8 +441,7 @@ class Controller:
     def update_appointment_details(self):
         appointment = self.read_a_appointment()
         if type(appointment) == tuple:
-            id_appointment = order[0]
-            #o_total = order[4]
+            id_appointment = appointment[0]
             id_contact = ' '
             while id_contact != '':
                 self.view.msg('---- Modifica contactos de la cita (deja vacio el id del producto para salir) ---')
@@ -453,15 +450,7 @@ class Controller:
                 if id_contact != '':
                     appointment_detail = self.model.read_a_appointment_details(id_appointment, id_contact)
                     if type(appointment_detail) == tuple:
-                        #od_total_old = order_detail[5]
-                        #o_total -= od_total_old
                         contact = self.model.read_a_contact(id_contact)
-                        #price = product[4]
-                        #self.view.ask('Cantidad: ')
-                        #od_amount = int(input())
-                        #od_total = price*od_amount
-                        #o_total += od_total
-                        #fields, whole_vals = self.update_lists(['od_amount','od_total'],[od_amount, od_total])
                         fields = []
                         whole_vals = []
                         whole_vals.append(id_appointment)
@@ -473,15 +462,13 @@ class Controller:
                             self.view.error('EL CONTACTO NO EXISTE EN LA CITA')
                         else:
                             self.view.error('PROBLEMA AL ACTUALIZAR EL CONTACTO. REVISA.')
-            #self.model.update_order(('o_total = %s',),(o_total, id_order))
         return
 
 
     def delete_appointment_details(self):
         appointment = self.read_a_appointment()
         if type(appointment) == tuple:
-            id_appointment = order[0]
-            #o_total = order[4]
+            id_appointment = appointment[0]
             id_contact = ' '
             while id_contact != '':
                 self.view.msg('---- Borra contactos de la orden (deja vacio el id del producto para salir) ---')
@@ -491,14 +478,11 @@ class Controller:
                     appointment_detail = self.model.read_a_appointment_detail(id_appointment, id_contact)
                     count = self.model.delete_appointment_detail(id_appointment, id_contact)
                     if type(appointment_detail) == tuple and count != 0:
-                        #od_total = order_detail[5]
-                        #o_total -= od_total
                         self.view.ok(id_contact, 'borro de la cita ')
                     else:
                         if appointment_detail == None:
                             self.view.error('EL CONTACTO NO EXISTE EN LA CITA')
                         else:
                             self.view.error('PROBLEMA AL BORRAR EL CONTACTO. REVISA.')
-            #self.model.update_appointment(('o_total = %s',),(o_total, id_order))
         return
 
