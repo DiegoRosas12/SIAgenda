@@ -26,7 +26,8 @@ CREATE TABLE IF NOT EXISTS contactos(
 CREATE TABLE IF NOT EXISTS citas(
 	idCita INT NOT NULL AUTO_INCREMENT,
     fecha VARCHAR(10) NOT NULL,
-    hora TIME,
+    hora_inicio VARCHAR(10),
+    hora_final VARCHAR(10),
     lugar VARCHAR(70),
     descripcion VARCHAR(70),
     PRIMARY KEY (idCita)
