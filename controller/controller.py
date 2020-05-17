@@ -430,7 +430,7 @@ class Controller:
             id_appointment = appointment[0]
             id_contact = ' '
             while id_contact != '':
-                self.view.msg('---- Agrega contactos a la cita (deja vacio el id del producto para salir) ---')
+                self.view.msg('---- Agrega contactos a la cita (deja vacio el id del contacto para salir) ---')
                 id_contact = self.create_appointment_details(id_appointment)
                 if id_contact == '':
                     break
@@ -444,7 +444,7 @@ class Controller:
             id_appointment = appointment[0]
             id_contact = ' '
             while id_contact != '':
-                self.view.msg('---- Modifica contactos de la cita (deja vacio el id del producto para salir) ---')
+                self.view.msg('---- Modifica contactos de la cita (deja vacio el id del contacto para salir) ---')
                 self.view.ask('ID contacto: ')
                 id_contact = input()
                 if id_contact != '':
@@ -471,7 +471,7 @@ class Controller:
             id_appointment = appointment[0]
             id_contact = ' '
             while id_contact != '':
-                self.view.msg('---- Borra contactos de la orden (deja vacio el id del producto para salir) ---')
+                self.view.msg('---- Borra contactos de la orden (deja vacio el id del contacto para salir) ---')
                 self.view.ask('ID contacto: ')
                 id_contact = input()
                 if id_contact != '':
