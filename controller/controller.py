@@ -341,7 +341,7 @@ class Controller:
             self.view.error('PROBLEMA AL LEER LAS CITAS. REVISA.')
         return
 
-    def update_order(self):
+    def update_appointment(self):
         self.view.ask('ID de cita a modificar: ')
         id_appointment = input()
         appointment = self.model.read_a_appointment(id_appointment)
@@ -381,7 +381,7 @@ class Controller:
             self.view.error('NO SE PUDO ACTUALIZAR LA CITA. REVISA.')
         return 
 
-    def delete_order(self):
+    def delete_appointment(self):
         self.view.ask('Id de cita a borrar: ')
         id_appointment = input()
         count = self.model.delete_appointment(id_appointment)
