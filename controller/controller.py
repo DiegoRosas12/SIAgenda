@@ -224,8 +224,6 @@ class Controller:
         return
 
     def create_appointment(self):
-        #self.view.ask('ID Contacto: ')
-        #id_contact = input()
         self.view.ask('Fecha (yyyy/mm/dd): ')
         o_date = input()
         self.view.ask('Hora Inicio (00:00:00): ')
@@ -242,7 +240,7 @@ class Controller:
             id_contact = ' '
             while id_contact != '':
                 self.view.msg('---- Agrega que contactos asistiran a la cita (deja vacio el id del contacto para salir) ---')
-                id_contacto = self.create_appointment_details(id_appointment)
+                id_contact = self.create_appointment_details(id_appointment)
 
         else:
             self.view.error('NO SE PUDO CREAR LA CITA. REVISA.')
@@ -432,8 +430,6 @@ class Controller:
                 if id_contact == '':
                     break
         return
-
-#read_appointments_contact
 
     def update_appointment_details(self):
         appointment = self.read_a_appointment()

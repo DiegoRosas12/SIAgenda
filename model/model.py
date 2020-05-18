@@ -105,20 +105,6 @@ class Model:
     ********************
     """
 
-# INSERT INTO contactos (`nombre`, `telefono`, `correo`, `direccion`) VALUES ('Christina Stewart','4710119876','cs@gmail.com','Bosque #201 Centro')
-# INSERT INTO contactos (`nombre`, `telefono`, `correo`, `direccion`) VALUES ('Ada Wong','4810210987','awo@hotmail.com','Durazno #202 Alameda')
-# INSERT INTO contactos (`nombre`, `telefono`, `correo`, `direccion`) VALUES ('Jill Valentine','4711230212','jv@gmail.com','Apple #301 Valles')
-
-
-# INSERT INTO citas (`fecha`, `hora_inicio`, `hora_final`, `lugar`, `descripcion` ) VALUES ('2019-07-21', '08:00:00', '10:00:00', 'Starbucks', 'Reunion con Claudia')
-# INSERT INTO citas (`fecha`, `hora_inicio`, `hora_final`, `lugar`, `descripcion` ) VALUES ('2020-02-21', '10:00:00', '12:00:00', 'Salon 310', 'Clase')
-# INSERT INTO citas (`fecha`, `hora_inicio`, `hora_final`, `lugar`, `descripcion` ) VALUES ('2020-03-18', '02:00:00', '04:00:00', 'Six Flags', 'Domingo familiar')
-
-# INSERT INTO citas_detalles (`idCita`,`idContacto`) VALUES ('1','1')
-# INSERT INTO citas_detalles (`idCita`,`idContacto`) VALUES ('2','2')
-# INSERT INTO citas_detalles (`idCita`,`idContacto`) VALUES ('2','3')
-# INSERT INTO citas_detalles (`idCita`,`idContacto`) VALUES ('1','3')
-
     def create_appointment(self, fdate, time_i, time_f, place, description):
         try:
             sql = 'INSERT INTO citas (`fecha`, `hora_inicio`, `hora_final`, `lugar`, `descripcion` ) VALUES (%s, %s, %s, %s, %s)'
@@ -131,7 +117,6 @@ class Model:
             self.cnx.rollback()
             return err
 
-#SELECT citas.*, citas_detalles.*, contactos.* FROM citas JOIN citas_detalles ON citas_detalles.idCita = citas.idCita and citas.idCita = '1' JOIN contactos ON contactos.idContacto = citas_detalles.idContacto';
     def read_a_appointment(self, id_cita):
         try:
             sql = 'SELECT citas.*, citas_detalles.*, contactos.* FROM citas JOIN citas_detalles ON citas_detalles.idCita = citas.idCita and citas.idCita = %s JOIN contactos ON contactos.idContacto = citas_detalles.idContacto'
