@@ -347,7 +347,6 @@ class Controller:
         if type(appointment) == tuple:
             self.view.show_appointment_header(' Datos de la cita '+id_appointment+' ')
             self.view.show_appointment(appointment)
-            self.view.show_appointment_total(appointment)
             self.view.show_appointment_footer()
         else:
             if appointment == None:
@@ -356,8 +355,6 @@ class Controller:
                 self.view.error('PROBLEMA AL LEER LA CITA. REVISA.')
             return
         self.view.msg('Ingresa los valores a modificar (vacio para dejarlo igual):')
-        #self.view.ask('ID Cliente: ')
-        #id_client = input()
         self.view.ask('Fecha (yyyy/mm/dd): ')
         o_date = input()    
         self.view.ask('Hora Inicio (00:00:00): ')
