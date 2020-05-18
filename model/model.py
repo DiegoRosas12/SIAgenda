@@ -122,7 +122,7 @@ class Model:
             sql = 'SELECT citas.*, citas_detalles.*, contactos.* FROM citas JOIN citas_detalles ON citas_detalles.idCita = citas.idCita and citas.idCita = %s JOIN contactos ON contactos.idContacto = citas_detalles.idContacto'
             vals = (id_cita,)
             self.cursor.execute(sql, vals)
-            record = self.cursor.fetchone()
+            record = self.cursor.fetchall()
             return record
         except connector.Error as err:
             return err

@@ -249,25 +249,24 @@ class Controller:
     def read_a_appointment(self):
         self.view.ask('ID Cita: ')
         id_appointment = input()
-        appointment = self.model.read_a_appointment(id_appointment)
-        if type(appointment) == tuple:
-            appointment_details = self.model.read_appointment_details(id_appointment)
-            if type(appointment_details) != list and appointment_details != None:
-                self.view.error('PROBLEMA AL LEER LA CITA. REVISA.')
-            else:
-                self.view.show_appointment_header(' Datos de la cita '+id_appointment+' ')
-                self.view.show_appointment(appointment)
-                self.view.show_appointment_details_header()
-                for appointment_detail in appointment_details:
-                    self.view.show_a_appointment_details(appointment_detail)
-                self.view.show_appointment_details_footer()
-                self.view.show_appointment_footer()
-                return appointment
+        appointments = self.model.read_a_appointment(id_appointment)
+        if type(appointments) == list:
+            self.view.show_appointment_header(' Todas las citas ')
+            for appointment in appointments:
+                id_appointment = appointment[0]
+                appointment_details = self.model.read_appointment_details(id_appointment)
+                if type(appointment_details) != list and appointment_details != None:
+                    self.view.error('PROBLEMA AL LEER LA CITA '+str(id_appointment)+'. REVISA.')
+                else:
+                    self.view.show_appointment(appointment)
+                    self.view.show_appointment_details_header()
+                    for appointment_detail in appointment_details:
+                        self.view.show_a_appointment_details(appointment_detail)
+                    self.view.show_appointment_details_footer()
+                    self.view.show_appointment_midder()
+            self.view.show_appointment_footer()
         else:
-            if appointment == None:
-                self.view.error('LA CITA NO EXISTE')
-            else:
-                self.view.error('PROBLEMA AL LEER LA CITA. REVISA.')
+            self.view.error('PROBLEMA AL LEER LAS CITAS. REVISA.')
         return
 
 
